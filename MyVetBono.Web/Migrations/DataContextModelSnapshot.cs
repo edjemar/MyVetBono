@@ -19,7 +19,7 @@ namespace MyVetBono.Web.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("MyVetBono.Web.Data.Entities.Agenda", b =>
+            modelBuilder.Entity("MyVet.Web.Data.Entities.Agenda", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -44,7 +44,7 @@ namespace MyVetBono.Web.Migrations
                     b.ToTable("Agendas");
                 });
 
-            modelBuilder.Entity("MyVetBono.Web.Data.Entities.History", b =>
+            modelBuilder.Entity("MyVet.Web.Data.Entities.History", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -69,6 +69,68 @@ namespace MyVetBono.Web.Migrations
                     b.HasIndex("ServiceTypeId");
 
                     b.ToTable("Histories");
+                });
+
+            modelBuilder.Entity("MyVet.Web.Data.Entities.Pet", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Born");
+
+                    b.Property<string>("ImageUrl");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<int?>("OwnerId");
+
+                    b.Property<int?>("PetTypeId");
+
+                    b.Property<string>("Race")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Remarks");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OwnerId");
+
+                    b.HasIndex("PetTypeId");
+
+                    b.ToTable("Pets");
+                });
+
+            modelBuilder.Entity("MyVet.Web.Data.Entities.PetType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PetTypes");
+                });
+
+            modelBuilder.Entity("MyVet.Web.Data.Entities.ServiceType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ServiceTypes");
                 });
 
             modelBuilder.Entity("MyVetBono.Web.Data.Entities.Owner", b =>
@@ -104,97 +166,35 @@ namespace MyVetBono.Web.Migrations
                     b.ToTable("Owners");
                 });
 
-            modelBuilder.Entity("MyVetBono.Web.Data.Entities.Pet", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Born");
-
-                    b.Property<string>("ImageUrl");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.Property<int?>("OwnerId");
-
-                    b.Property<int?>("PetTypeId");
-
-                    b.Property<string>("Race")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("Remarks");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OwnerId");
-
-                    b.HasIndex("PetTypeId");
-
-                    b.ToTable("Pets");
-                });
-
-            modelBuilder.Entity("MyVetBono.Web.Data.Entities.PetType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PetTypes");
-                });
-
-            modelBuilder.Entity("MyVetBono.Web.Data.Entities.ServiceType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ServiceTypes");
-                });
-
-            modelBuilder.Entity("MyVetBono.Web.Data.Entities.Agenda", b =>
+            modelBuilder.Entity("MyVet.Web.Data.Entities.Agenda", b =>
                 {
                     b.HasOne("MyVetBono.Web.Data.Entities.Owner")
                         .WithMany("Agendas")
                         .HasForeignKey("OwnerId");
 
-                    b.HasOne("MyVetBono.Web.Data.Entities.Pet", "Pet")
+                    b.HasOne("MyVet.Web.Data.Entities.Pet", "Pet")
                         .WithMany("Agendas")
                         .HasForeignKey("PetId");
                 });
 
-            modelBuilder.Entity("MyVetBono.Web.Data.Entities.History", b =>
+            modelBuilder.Entity("MyVet.Web.Data.Entities.History", b =>
                 {
-                    b.HasOne("MyVetBono.Web.Data.Entities.Pet", "Pet")
+                    b.HasOne("MyVet.Web.Data.Entities.Pet", "Pet")
                         .WithMany("Histories")
                         .HasForeignKey("PetId");
 
-                    b.HasOne("MyVetBono.Web.Data.Entities.ServiceType", "ServiceType")
+                    b.HasOne("MyVet.Web.Data.Entities.ServiceType", "ServiceType")
                         .WithMany("Histories")
                         .HasForeignKey("ServiceTypeId");
                 });
 
-            modelBuilder.Entity("MyVetBono.Web.Data.Entities.Pet", b =>
+            modelBuilder.Entity("MyVet.Web.Data.Entities.Pet", b =>
                 {
                     b.HasOne("MyVetBono.Web.Data.Entities.Owner", "Owner")
                         .WithMany("Pets")
                         .HasForeignKey("OwnerId");
 
-                    b.HasOne("MyVetBono.Web.Data.Entities.PetType", "PetType")
+                    b.HasOne("MyVet.Web.Data.Entities.PetType", "PetType")
                         .WithMany("Pets")
                         .HasForeignKey("PetTypeId");
                 });

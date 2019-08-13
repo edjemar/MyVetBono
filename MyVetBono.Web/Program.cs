@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using MyVetBono.Web.Data;
 using MyVetBono.Web;
+using MyVetBono.Web.Data;
 
 namespace MyVetBono.Web
 {
