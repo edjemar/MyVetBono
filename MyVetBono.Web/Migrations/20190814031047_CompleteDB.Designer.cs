@@ -10,7 +10,7 @@ using MyVetBono.Web.Data;
 namespace MyVetBono.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190813103400_CompleteDB")]
+    [Migration("20190814031047_CompleteDB")]
     partial class CompleteDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
