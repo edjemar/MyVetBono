@@ -10,7 +10,7 @@ using MyVetBono.Web.Data;
 namespace MyVetBono.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190814041832_Users")]
+    [Migration("20190814175051_Users")]
     partial class Users
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
