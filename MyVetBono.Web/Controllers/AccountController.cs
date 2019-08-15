@@ -41,5 +41,10 @@ namespace MyVetBono.Web.Controllers
         
             return View(model);
         }
+        public async Task<IActionResult> Logout()
+        {
+            await _userHelper.LogoutAsync();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
