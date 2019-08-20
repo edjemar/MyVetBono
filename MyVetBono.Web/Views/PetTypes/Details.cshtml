@@ -1,4 +1,4 @@
-﻿@model MyVetBono.Web.Data.Entities.Owner
+﻿@model MyVetBono.Web.Data.Entities.PetType
 
 @{
     ViewData["Title"] = "Details";
@@ -7,9 +7,15 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Owner</h4>
+    <h4>PetType</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
     </dl>
 </div>
 <div>

@@ -19,7 +19,7 @@ namespace MyVetBono.Web.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("MyVet.Web.Data.Entities.Agenda", b =>
+            modelBuilder.Entity("MyVetBono.Web.Data.Entities.Agenda", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -71,7 +71,40 @@ namespace MyVetBono.Web.Migrations
                     b.ToTable("Histories");
                 });
 
-            modelBuilder.Entity("MyVet.Web.Data.Entities.Pet", b =>
+            modelBuilder.Entity("MyVetBono.Web.Data.Entities.Owner", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("CellPhone")
+                        .IsRequired()
+                        .HasMaxLength(20);
+
+                    b.Property<string>("Document")
+                        .IsRequired()
+                        .HasMaxLength(30);
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("FixedPhone")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Owners");
+                });
+
+            modelBuilder.Entity("MyVetBono.Web.Data.Entities.Pet", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -133,40 +166,7 @@ namespace MyVetBono.Web.Migrations
                     b.ToTable("ServiceTypes");
                 });
 
-            modelBuilder.Entity("MyVetBono.Web.Data.Entities.Owner", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Address")
-                        .HasMaxLength(100);
-
-                    b.Property<string>("CellPhone")
-                        .IsRequired()
-                        .HasMaxLength(20);
-
-                    b.Property<string>("Document")
-                        .IsRequired()
-                        .HasMaxLength(30);
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.Property<string>("FixedPhone")
-                        .HasMaxLength(20);
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Owners");
-                });
-
-            modelBuilder.Entity("MyVet.Web.Data.Entities.Agenda", b =>
+            modelBuilder.Entity("MyVetBono.Web.Data.Entities.Agenda", b =>
                 {
                     b.HasOne("MyVetBono.Web.Data.Entities.Owner")
                         .WithMany("Agendas")
@@ -188,7 +188,7 @@ namespace MyVetBono.Web.Migrations
                         .HasForeignKey("ServiceTypeId");
                 });
 
-            modelBuilder.Entity("MyVet.Web.Data.Entities.Pet", b =>
+            modelBuilder.Entity("MyVetBono.Web.Data.Entities.Pet", b =>
                 {
                     b.HasOne("MyVetBono.Web.Data.Entities.Owner", "Owner")
                         .WithMany("Pets")
