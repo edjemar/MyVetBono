@@ -37,12 +37,10 @@ namespace MyVetBono.Web.Controllers
                 }
 
                 ModelState.AddModelError(string.Empty, "User or password is not valid.");
-                model.Password = string.Empty;
             }
         
             return View(model);
         }
-        [HttpGet]
         public async Task<IActionResult> Logout()
         {
             await _userHelper.LogoutAsync();

@@ -22,11 +22,9 @@ namespace MyVetBono.Web.Controllers
         }
 
         // GET: Owners
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View(_context.Owners
-                .Include(o => o.User)
-                .Include(o => o.Pets));
+            return View(await _context.Owners.ToListAsync());
         }
 
         // GET: Owners/Details/5
